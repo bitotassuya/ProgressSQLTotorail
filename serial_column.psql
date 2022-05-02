@@ -1,0 +1,20 @@
+create table fruit(
+    id serial primary key,
+    name varchar(50),
+    price int
+);
+insert into fruit(name,price)
+values('coconut',15);
+
+select *from fruit;
+
+insert into fruit(name,price)
+    values('coconut',15),
+    ('mango',20),
+    ('papaya',50),
+    ('water melon',30);
+
+/* how to reset identify*/
+delete from fruit;
+
+truncate table fruit restart identity;
