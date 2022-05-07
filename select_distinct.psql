@@ -1,0 +1,14 @@
+SELECT *from fruit;
+
+insert into fruit(name,price)
+    values('coconut',15),
+    ('mango',20),
+    ('papaya',50),
+    ('water melon',30);
+
+/* repeat name */
+select name from fruit;
+
+/* No repeat name */
+
+select distinct name from fruit;
