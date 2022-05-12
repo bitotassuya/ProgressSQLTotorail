@@ -1,0 +1,17 @@
+select *from province;
+
+/* เรียงลำดับตัวอักษร*/
+select *from province order by name,name_en;
+
+/* เรียงลำดับตัวอักษรจากหลังมาหน้า*/
+select *from province order by name desc;
+
+
+/* เรียงลำดับตัวเลขจากหลังมาหน้า*/
+select *from province order by area_km2 desc;
+
+/* นำข้อมูลมาแก้ไขแล้วไปใส่ใน column ใหม่*/
+select name,area_km2, (area_km2/2 )as new_column from province order by new_column;
+
+
+
