@@ -1,0 +1,11 @@
+SELECT *from province;
+
+UPDATE province
+    set area_km2 = NULL
+    WHERE area_km2 > 2000;
+
+SELECT count(area_km2) FROM province;
+
+UPDATE province
+    set area_km2 = 3000
+    where area_km2 is null;
