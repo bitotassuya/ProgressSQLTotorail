@@ -1,0 +1,42 @@
+select * from province;
+
+SELECT * FROM province where name ilike '%บุรี%';
+
+--contains ~* (case insensitive) range_overright_multirange
+SELECT *FROM province WHERE name ~* 'นคร'
+
+
+--contains ~ (case sensitive) range_overright_multirange
+SELECT *FROM province WHERE name ~ 'นคร'
+
+/* begins with ^ */
+SELECT *FROM province WHERE name ~* '^นคร'
+
+
+-- ends with $
+/* contains ^ */
+SELECT *FROM province WHERE name ~* 'นคร$'
+
+
+/* using or */
+SELECT *FROM province WHERE name ~* 'นคร|บุรี|สิง|ราช'
+
+--using and
+SELECT *FROM province WHERE name ~* 'ราช.*บุรี'
+
+
+--using and swapper
+SELECT *FROM province WHERE name ~* '(?=.*บุรี)(?=.*ราช)'
+
+/*seach word boundary  
+    base : using '\b'
+    postgres: suing '\y
+
+ */
+SELECT *FROM province WHERE name ~* '\yนคร\y'
+
+
+
+
+
+
