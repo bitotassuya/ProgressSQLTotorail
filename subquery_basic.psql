@@ -1,0 +1,28 @@
+SELECT * FROM province LIMIT 20;
+
+SELECT avg(area_km2) FROM province LIMIT 20;
+
+SELECT *FROM province WHERE area_km2 > 2743;
+
+SELECT * FROM province WHERE area_km2 >(SELECT avg(area_km2)
+FROM province);
+
+SELECT name,(SELECT avg(area_km2) as "avg_area" FROM province) 
+FROM province LIMIT 10;
+
+SELECT name,(SELECT avg(area_km2) as "avg_area" FROM province) 
+FROM province where area_km2 > (SELECT avg(area_km2)FROM province) 
+LIMIT 10;
+
+SELECT name,area_km2,area_km2 -(SELECT avg(area_km2) FROM province) 
+as "above_avg" FROM province 
+where area_km2 > (SELECT avg(area_km2)FROM province) 
+LIMIT 10;
+
+SELECT sum(area_km2) FROM province;
+
+SELECT name,100*area_km2 / (SELECT sum(area_km2) FROM province) 
+FROM province;
+
+SELECT name,(100*area_km2 / (SELECT sum(area_km2) FROM province)) 
+:: numeric(5,2) FROM province ORDER BY area_km2 desc LIMIT 5;
