@@ -1,0 +1,4 @@
+SELECT *from province;
+
+SELECT *FROM province WHERE area_km2 
+BETWEEN 2000 and 3000;
