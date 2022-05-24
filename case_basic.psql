@@ -1,0 +1,42 @@
+SELECT *from province;
+
+
+SELECT name,region,area_km2,
+    CASE region
+        WHEN 'C' THEN 'Central'
+        WHEN 'S' THEN 'South'
+        WHEN 'N' then 'North'
+    END as region_text
+FROM province;
+
+
+SELECT name,region,area_km2,
+    CASE
+        when area_km2 > 3000 then 'large'
+        when area_km2 <= 3000 and area_km2 > 1500 THEN 'Medium'
+        when area_km2 BETWEEN 1000 and 1499 then 'Small'
+        ELSE 'Tiny'
+    END area_size
+from province;
+
+/* update some data in area_km2 where name = .... */
+UPDATE  province 
+   set area_km2 = area_km2 + 1500 where name ~* 'นคร' or name ~*'บุรี' ;
+
+
+WITH newTable as (
+    SELECT name,region,area_km2,
+        CASE
+            when area_km2 > 3000 then 'large'
+            when area_km2 <= 3000 and area_km2 > 1500 THEN 'Medium'
+            when area_km2 BETWEEN 1000 and 1499 then 'Small'
+            ELSE 'Tiny'
+        END area_size
+    from province
+)
+SELECT area_size,count(area_size) as size_count 
+    FROM newTable
+    group by area_size
+    order by size_count;
+
+
