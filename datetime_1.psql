@@ -1,0 +1,28 @@
+SELECT CURRENT_DATE,CURRENT_TIME,LOCALTIMESTAMP,now();
+
+/* Cal Age by date string tranform*/
+SELECT age('1995-11-22'::timestamp) ;
+SELECT age(timestamp'1995-11-22') ;
+
+
+
+SELECT CURRENT_DATE, CURRENT_DATE+5;
+
+SELECT  LOCALTIMESTAMP ,LOCALTIMESTAMP + '5 days'::interval;
+SELECT  LOCALTIMESTAMP ,LOCALTIMESTAMP + '5 months'::interval;
+SELECT  LOCALTIMESTAMP ,LOCALTIMESTAMP + '5 years'::interval;
+SELECT  LOCALTIMESTAMP ,LOCALTIMESTAMP + '2 hours'::interval;
+SELECT  LOCALTIMESTAMP ,LOCALTIMESTAMP + '12 MINUTES'::interval;
+
+
+
+/* make ownfuntion year month day*/
+SELECT make_date(2019,9,10),make_time(16,40,45),
+make_timestamp(2022,9,10,14,17,30);
+
+SELECT timestamp '2020-5-30 14:30' - timestamp'2019-6-19  12:20';
+
+SELECT timestamp '2020-5-30 14:30' - timestamp'2019-6-19  12:20',
+extract(MONTH from timestamp'2020-5-30 14:30'- timestamp'2019-6-19  12:20' ),
+extract(DAY from timestamp'2020-5-30 14:30'- timestamp'2019-6-19  12:20' ),
+extract(HOUR from timestamp'2020-5-30 14:30'- timestamp'2019-6-19  12:20' ) 
