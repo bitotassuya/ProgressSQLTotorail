@@ -1,0 +1,27 @@
+select *from province;
+
+-- row_number is window function--
+select row_number() over (order by area_km2)row_number,
+* from province;
+
+-- more to less --
+select row_number() over (order by area_km2 desc)row_number,
+* from province;
+
+--Split-Apply-Combine--
+select row_number() over (partition by region 
+order by area_km2 desc)row_num,
+* from province;
+
+
+--Split-Apply-Combine 2 level--
+select row_number() over (partition by region,
+substr(p_id,1,1) 
+order by area_km2 desc)row_num,
+* from province;
+
+--Split-Apply-Combine 2 level multi codition--
+select row_number() over (partition by region,
+substr(p_id,1,1) 
+order by region,p_id desc)row_num,
+* from province;
