@@ -1,0 +1,17 @@
+SELECT *from province;
+
+SELECT name,area_km2,
+rank() over (ORDER BY area_km2 DESC)
+FROM province;
+
+SELECT name,area_km2,
+rank() over (ORDER BY area_km2 DESC) as rank,
+dense_rank() over (ORDER BY area_km2 DESC) as dense_rank
+FROM province;
+
+
+SELECT name,area_km2,
+rank() over w as rank,
+dense_rank() over w dense_rank
+FROM province
+WINDOW w as (ORDER BY area_km2 DESC) ;
