@@ -1,0 +1,46 @@
+select *from province;
+
+select random();
+
+SELECT name,random() from province;
+
+SELECT name,random() FROM province ORDER BY random();
+/* random all  */
+
+SELECT name,random() FROM province ORDER BY random() LIMIT 1;
+/* random each one*/
+
+SELECT name,random() FROM province ORDER BY random() LIMIT(
+    SELECT floor(count(*)*.7) FROM
+    province
+);
+
+/* random data in province 70 % */
+
+SELECT * 
+    into traning
+    FROM province ORDER BY random() LIMIT 
+    (SELECT floor(count(*)*.7) FROM
+    province);
+/*New table is traning ,So It's has 70 % from province*/
+
+SELECT * from traning;
+
+SELECT * from province
+EXCEPT
+SELECT *from traning;
+/*select data from provinve intersection <SET> with training*/
+
+with cte as (
+    SELECT * from province
+    EXCEPT
+    SELECT *from traning
+)
+SELECT * 
+    into test
+    from cte;
+
+SELECT *from test;
+
+/* create cte for 30% data of province intersection <SET> with training
+and take cte to test new table*/
